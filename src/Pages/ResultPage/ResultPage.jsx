@@ -7,7 +7,6 @@ import "./resultPage.scss";
 
 export const ResultPage = () => {
   const [questions, loading] = useCollectionData(collection(db, "Questions"));
-  console.log(questions);
   const defaultLabelStyle = {
     fontSize: "5px",
     fontFamily: "sans-serif",
@@ -15,29 +14,37 @@ export const ResultPage = () => {
   return (
     <div className="container">
       {questions?.map((val, ind) => {
-        let currentQuestionCounts = val.answers.reduce(
+        let currentQuestionCounts = 0;
+        currentQuestionCounts = val.answers.reduce(
           (sum, element) => sum + (element.count || 0),
           0
         );
         return (
-          <>
-          <h1>{val.question}</h1>
-            <PieChart
-              className="diagram"
-              key={ind}
-              data={val.answers.map((answCount, ind) => {
-                return {
-                  title: ind,
-                  value: Math.round(
-                    (answCount.count / currentQuestionCounts) * 100
-                  ),
-                  color: answCount.color,
-                };
-              })}
-              label={({ dataEntry }) => dataEntry.value + "%"}
-              labelStyle={defaultLabelStyle}
-            />
-          </>
+          <div key={ind}>
+            <h1>{val.question}</h1>
+            <section className="diagram-section">
+              <PieChart
+                className="diagram"
+                data={val.answers.map((answCount, ind) => {
+                  return {
+                    title: answCount.answer,
+                    value: Math.round(
+                      (answCount.count / currentQuestionCounts) * 100
+                    ),
+                    color: answCount.color,
+                  };
+                })}
+                label={({ dataEntry }) => dataEntry.value + "%"}
+                labelStyle={defaultLabelStyle}
+              />
+              <div>
+                {val.answers.map((answ, ind) => {
+                  return <span key={ind} style={{color: answ.color, fontWeight: '600'}}>{answ.answer}</span>;
+                })}
+              </div>
+              <div className="test"></div>
+            </section>
+          </div>
         );
       })}
     </div>

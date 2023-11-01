@@ -1,10 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./questionPage.scss";
-import Radio from "@mui/material/Radio";
-import RadioGroup from "@mui/material/RadioGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import FormControl from "@mui/material/FormControl";
-import FormLabel from "@mui/material/FormLabel";
 import { db } from "../../Firebase/firebaseInit";
 import {
   collection,
@@ -18,8 +13,8 @@ import {
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import { useNavigate, useParams } from "react-router-dom";
 import { Loader } from "../../Components/Loader/Loader";
-import { Button } from "../../Components/Button/Button";
 import toast, { Toaster } from "react-hot-toast";
+import { QuestionForm } from "./QuestionForm";
 
 export const QuestionPage = () => {
   const [questions, loading] = useCollectionData(collection(db, "Questions"));
@@ -29,6 +24,8 @@ export const QuestionPage = () => {
   const params = useParams();
   const navigate = useNavigate();
   const [value, setValue] = useState(null);
+  const [isDisabled, setIsDisabled] = useState([]);
+  const [currentFormDisabled, setCurrentFormDisabled] = useState(false);
   const refByTime = query(
     dbFiredatabase,
     where("id", "==", +params.id),
@@ -38,14 +35,17 @@ export const QuestionPage = () => {
   useEffect(() => {
     if (questions) {
       setCurrentQuestion(questions.filter((val) => val.id === +params.id));
-      console.log(questions.filter((val) => val.id === +params.id));
     }
   }, [questions, params.id]);
 
   useEffect(() => {
     if (+params.id === questions?.length) {
-      console.log("da");
       setBtnValue("Закончить");
+    }
+    if(isDisabled.some((elem) => elem.id === params.id)){
+      setCurrentFormDisabled(true);
+    } else{
+      setCurrentFormDisabled(false);
     }
   }, [params.id]);
 
@@ -53,16 +53,8 @@ export const QuestionPage = () => {
     return <Loader />;
   }
 
-  const handleChange = (e) => {
-    setValue(e.target.value);
-    console.log(e.target.value);
-  };
-
   const handleClick = async () => {
     if (value) {
-      const filteredAnsw = currentQuestion[0].answers.filter(
-        (val) => val.answer === value
-      );
       const ind = currentQuestion[0].answers.findIndex(
         (val) => val.answer === value
       );
@@ -74,6 +66,11 @@ export const QuestionPage = () => {
       await updateDoc(doc(db, "Questions", docId), {
         answers: currentQuestion[0].answers,
       });
+      setIsDisabled([
+        ...isDisabled,
+        { id: currentQuestion[0].id, isDisabled: true },
+      ]);
+      setValue(null)
       if (nextPage <= questions.length) {
         navigate("/questions/" + nextPage);
       }
@@ -87,42 +84,20 @@ export const QuestionPage = () => {
 
   return (
     <>
-      <div className="container">
-        <div>
-          {currentQuestion.map((val, ind) => {
-            return (
-              <FormControl key={ind}>
-                <FormLabel
-                  style={{ textAlign: "center", marginBottom: "30px" }}
-                  className="radio__label"
-                  id="demo-radio-buttons-group-label"
-                >
-                  {val.question}
-                </FormLabel>
-                <RadioGroup
-                  aria-labelledby="demo-radio-buttons-group-label"
-                  name="radio-buttons-group"
-                  value={value}
-                  onChange={handleChange}
-                >
-                  {val.answers.map((answer, ind) => {
-                    return (
-                      <FormControlLabel
-                        key={ind}
-                        value={answer.answer}
-                        control={<Radio />}
-                        label={answer.answer}
-                      />
-                    );
-                  })}
-                </RadioGroup>
-              </FormControl>
-            );
-          })}
-        </div>
-        <Button style={{ marginLeft: "-20%" }} onClick={handleClick}>
-          {btnValue}
-        </Button>
+      <div className="container-questionPage">
+        {currentQuestion.map((val, ind) => {
+          return (
+            <QuestionForm
+              val={val}
+              value={value}
+              ind={ind}
+              setValue={setValue}
+              btnValue={btnValue}
+              handleClick={handleClick}
+              isDisabled={currentFormDisabled}
+            />
+          );
+        })}
       </div>
       <Toaster position="top-right" reverseOrder={false} />
     </>

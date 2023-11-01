@@ -2,12 +2,14 @@ import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/bundle";
 import { Autoplay, Pagination, Navigation, A11y } from "swiper/modules";
-import Slide1 from "./img/slide1.jpg";
-import Slide2 from "./img/slide2.jpg";
-import Slide3 from "./img/slide3.jpg";
+import Slide1 from "./img/slide1.png";
+import Slide2 from "./img/slide2.png";
+import Slide3 from "./img/slide3.png";
+import Slide4 from "./img/slide4.png";
+import Slide5 from "./img/slide5.png";
 
 export const Slider = () => {
-  const slides = [Slide1, Slide2, Slide3];
+  const slides = [Slide1, Slide2, Slide3, Slide4, Slide5];
   return (
     <>
       <Swiper
