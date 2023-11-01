@@ -1,17 +1,20 @@
 {
   "files": {
-    "main.css": "/questionnaire/static/css/main.b4626200.css",
-    "main.js": "/questionnaire/static/js/main.c8f97123.js",
-    "static/media/slide2.jpg": "/questionnaire/static/media/slide2.cece1b3e6ee4ff77de92.jpg",
-    "static/media/slide3.jpg": "/questionnaire/static/media/slide3.20c0b241e61725f1f0f3.jpg",
-    "static/media/slide1.jpg": "/questionnaire/static/media/slide1.9cdb778a5fc58348e2f8.jpg",
+    "main.css": "/questionnaire/static/css/main.8e202363.css",
+    "main.js": "/questionnaire/static/js/main.2333cfad.js",
+    "static/media/slide4.png": "/questionnaire/static/media/slide4.03e41623c355545c6f99.png",
+    "static/media/slide1.png": "/questionnaire/static/media/slide1.8546bc2a558ee7b00dac.png",
+    "static/media/slide3.png": "/questionnaire/static/media/slide3.7b0385056fae821dcbc0.png",
+    "static/media/slide2.png": "/questionnaire/static/media/slide2.00667d2b0aa35d8ea4b8.png",
+    "static/media/slide5.png": "/questionnaire/static/media/slide5.62851ea6a9e79258d234.png",
+    "static/media/back.png": "/questionnaire/static/media/back.1231741819c9c159b289.png",
     "static/media/logo.png": "/questionnaire/static/media/logo.afe0991855a075163917.png",
     "index.html": "/questionnaire/index.html",
-    "main.b4626200.css.map": "/questionnaire/static/css/main.b4626200.css.map",
-    "main.c8f97123.js.map": "/questionnaire/static/js/main.c8f97123.js.map"
+    "main.8e202363.css.map": "/questionnaire/static/css/main.8e202363.css.map",
+    "main.2333cfad.js.map": "/questionnaire/static/js/main.2333cfad.js.map"
   },
   "entrypoints": [
-    "static/css/main.b4626200.css",
-    "static/js/main.c8f97123.js"
+    "static/css/main.8e202363.css",
+    "static/js/main.2333cfad.js"
   ]
 }
