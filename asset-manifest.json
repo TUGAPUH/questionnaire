@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/questionnaire/static/css/main.6e4854d1.css",
+    "main.css": "/questionnaire/static/css/main.a8e8155d.css",
     "main.js": "/questionnaire/static/js/main.2333cfad.js",
     "static/media/slide4.png": "/questionnaire/static/media/slide4.03e41623c355545c6f99.png",
     "static/media/slide1.png": "/questionnaire/static/media/slide1.8546bc2a558ee7b00dac.png",
@@ -10,11 +10,11 @@
     "static/media/back.png": "/questionnaire/static/media/back.1231741819c9c159b289.png",
     "static/media/logo.png": "/questionnaire/static/media/logo.afe0991855a075163917.png",
     "index.html": "/questionnaire/index.html",
-    "main.6e4854d1.css.map": "/questionnaire/static/css/main.6e4854d1.css.map",
+    "main.a8e8155d.css.map": "/questionnaire/static/css/main.a8e8155d.css.map",
     "main.2333cfad.js.map": "/questionnaire/static/js/main.2333cfad.js.map"
   },
   "entrypoints": [
-    "static/css/main.6e4854d1.css",
+    "static/css/main.a8e8155d.css",
     "static/js/main.2333cfad.js"
   ]
 }
